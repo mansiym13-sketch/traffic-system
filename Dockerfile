@@ -1,9 +1,12 @@
-FROM openjdk:17
+# Use Java 17
+FROM eclipse-temurin:17-jdk-alpine
 
+# Copy project files
 WORKDIR /app
+COPY . .
 
-COPY target/*.jar app.jar
+# Build the project
+RUN ./mvnw clean package -DskipTests
 
-EXPOSE 8080
-
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Run the jar
+CMD ["java", "-jar", "target/traffic-system-0.0.1-SNAPSHOT.jar"]
