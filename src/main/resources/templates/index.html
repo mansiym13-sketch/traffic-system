@@ -15,6 +15,32 @@
         <p class="text-muted">Monitor violations and fines</p>
     </div>
 
+    <!-- 🚀 DASHBOARD -->
+    <div class="row text-center mb-4">
+
+        <div class="col-md-4">
+            <div class="card shadow p-3">
+                <h5>Total Violations</h5>
+                <h3 th:text="${totalViolations}">0</h3>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow p-3">
+                <h5>Total Fine</h5>
+                <h3>₹ <span th:text="${totalFine}">0</span></h3>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow p-3">
+                <h5>Max Speed</h5>
+                <h3 th:text="${maxSpeed}">0</h3>
+            </div>
+        </div>
+
+    </div>
+
     <!-- Form Card -->
     <div class="card shadow p-4 mb-4">
         <h4 class="mb-3">Add Vehicle Data</h4>
@@ -69,4 +95,4 @@
 </div>
 
 </body>
-</html>
+</html>SSS

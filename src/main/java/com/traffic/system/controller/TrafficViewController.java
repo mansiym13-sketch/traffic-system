@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+
 
 @Controller
 public class TrafficViewController {
@@ -15,7 +18,21 @@ public class TrafficViewController {
 
     @GetMapping("/")
     public String home(Model model) {
-        model.addAttribute("violations", repo.findAll());
+
+        List<Violation> list = repo.findAll();
+
+        int totalViolations = list.size();
+        int totalFine = list.stream().mapToInt(Violation::getFine).sum();
+        double maxSpeed = list.stream()
+                .mapToDouble(Violation::getSpeed)
+                .max()
+                .orElse(0);
+
+        model.addAttribute("violations", list);
+        model.addAttribute("totalViolations", totalViolations);
+        model.addAttribute("totalFine", totalFine);
+        model.addAttribute("maxSpeed", maxSpeed);
+
         return "index";
     }
 
